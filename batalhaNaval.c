@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // Desafio Batalha Naval - MateCheck
-// Nível Novato - Posicionamento dos Navios
+// Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
 
 int main()
 {
@@ -23,6 +23,10 @@ int main()
     int navioVerticalColuna = 2;   // fixo
     int navioHorizontalLinha = 7;  // fixo
     int navioHorizontalColuna = 1; // posição inicial
+    int navioDiagonal1Linha = 1;
+    int navioDiagonal1Coluna = 6;
+    int navioDiagonal2Linha = 6;
+    int navioDiagonal2Coluna = 5;
 
     // Posicionando o navio vertical
     if (navioVerticalLinha < 0 || navioVerticalLinha + 2 >= 10 || navioVerticalColuna < 0 || navioVerticalColuna >= 10) // Verificação do navio dentro dos limites do tabuleiro
@@ -31,21 +35,23 @@ int main()
     }
     else
     {
-        int sobreposicaoHorizontal = 0;
+        int sobreposicaoVertical = 0;
         for (int i = 0; i < 3; i++)
         {
-            if (tabuleiro[navioHorizontalLinha][navioHorizontalColuna + i] == 3) // Verificando se já está preenchido, com outro navio, a posição escolhida
+            if (tabuleiro[navioVerticalLinha + i][navioVerticalColuna] == 3) // Verificando se já está preenchido, com outro navio, a posição escolhida
             {
                 printf("Erro! Sobreposição com outro navio!\n");
-                sobreposicaoHorizontal = 1;
+                sobreposicaoVertical = 1;
                 break;
             }
         }
-        if (!sobreposicaoHorizontal)
+        if (!sobreposicaoVertical)
+        {
             for (int i = 0; i < 3; i++)
             {
                 tabuleiro[navioVerticalLinha + i][navioVerticalColuna] = 3;
             } // Inserindo navio no tabuleiro
+        }
     }
 
     // Posicionando o navio horizontal
@@ -75,6 +81,60 @@ int main()
         }
     }
 
+    //Posicionando navio diagonal 1 - Para baixo e direita
+
+    if (navioDiagonal1Linha < 0 || navioDiagonal1Linha >= 10 || navioDiagonal1Coluna < 0 || navioDiagonal1Coluna + 2 >= 10) // Verificação do navio dentro dos limites do tabuleiro
+    {
+        printf("Erro! Navio fora dos limites do tabuleiro\n"); // Mensagem de erro
+    }
+    else
+    {
+        int sobreposicaoDiagonal = 0; // Verificando se já está preenchido, com outro navio, a posição escolhida
+        for (int i = 0; i < 3; i++)
+        {
+            if (tabuleiro[navioDiagonal1Linha + i][navioDiagonal1Coluna + i] == 3)
+            {
+                printf("Erro! Sobreposição com outro navio!\n");
+                sobreposicaoDiagonal = 1;
+                break;
+            }
+        }
+        if (!sobreposicaoDiagonal)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                tabuleiro[navioDiagonal1Linha + i][navioDiagonal1Coluna + i] = 3;
+            } // Inserindo navio no tabuleiro
+        }
+    }
+
+    //  //Posicionando navio diagonal 2 - Para cima e direita
+
+     if (navioDiagonal2Linha < 0 || navioDiagonal2Linha >= 10 || navioDiagonal2Coluna < 0 || navioDiagonal2Coluna + 2 >= 10) // Verificação do navio dentro dos limites do tabuleiro
+     {
+         printf("Erro! Navio fora dos limites do tabuleiro\n"); // Mensagem de erro
+     }
+     else
+     {
+         int sobreposicaoDiagonal = 0; // Verificando se já está preenchido, com outro navio, a posição escolhida
+         for (int i = 0; i < 3; i++)
+         {
+             if (tabuleiro[navioDiagonal2Linha - i][navioDiagonal2Coluna + i] == 3)
+             {
+                 printf("Erro! Sobreposição com outro navio!\n");
+                 sobreposicaoDiagonal = 1;
+                 break;
+             }
+         }
+         if (!sobreposicaoDiagonal)
+         {
+             for (int i = 0; i < 3; i++)
+             {
+                 tabuleiro[navioDiagonal2Linha - i][navioDiagonal2Coluna + i] = 3;
+             } // Inserindo navio no tabuleiro
+         }
+     }
+
     // Tabuleiro com navios posicionados
     for (int i = 0; i < 10; i++) // Linhas
     {
@@ -87,10 +147,6 @@ int main()
 
     return 0;
 }
-// Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-// Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-// Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-// Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
 // Nível Mestre - Habilidades Especiais com Matrizes
 // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
