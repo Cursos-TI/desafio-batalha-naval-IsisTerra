@@ -6,6 +6,7 @@
 int main()
 {
     int agua = 0;
+    int areaAfetada = 5;
     int tabuleiro[10][10];
 
     for (int i = 0; i < 10; i++) // Linhas
@@ -16,127 +17,101 @@ int main()
         }
     }
 
-     int cone[5][5];
+    int cone[5][5];
 
-    int coneOrigemLinha = 0;
+    int coneOrigemLinha = 0;
 
-    int coneOrigemColuna = 2;
+    int coneOrigemColuna = 2;
 
+    // Habilidade do cone
+    for (int i = 0; i < 5; i++) // Linhas
 
+    {
 
-    // Habilidade do cone
+        for (int j = 0; j < 5; j++) // Colunas
 
-    for (int i = 0; i < 5; i++) // Linhas
+        {
 
-    {
+            if (i >= 0 && j >= 2 - i && j <= 2 + i)
 
-        for (int j = 0; j < 5; j++) // Colunas
+            {
 
-        {
+                cone[i][j] = areaAfetada;
+            }
 
-            if (i >= 0 && j >= 2 - i && j <= 2 + i)
+            else
+            {
 
-            {
+                cone[i][j] = agua;
+            }
 
-                cone[i][j] = areaAfetada;
+            printf("%d ", cone[i][j]);
+        }
 
-            }
+        printf("\n");
+    }
 
-            else
+    int cruz[5][5];
 
-            {
+    int crurOrigemLinha = 7;
 
-                cone[i][j] = agua;
+    int cruzOrigemColuna = 2;
 
-            }
+    // Habilidade da cruz
 
-            printf("%d ", cone[i][j]);
+    for (int i = 0; i < 5; i++) // Linhas
 
-        }
+    {
 
-        printf("\n");
+        for (int j = 0; j < 5; j++) // Colunas
 
-    }
+        {
 
+            if (i >= 5 && j >= 0 - i && j <= 4)
+            {
 
+                cruz[i][j] = areaAfetada;
+            }
 
-    int cruz[5][5];
+            else
 
-    int crurOrigemLinha = 7;
+            {
 
-    int cruzOrigemColuna = 2;
+                cruz[i][j] = agua;
+            }
+        }
+    }
 
+    int octaedro[5][5];
 
+    int ostaedroOrigemLinha = 6;
 
-    // Habilidade da cruz
+    int octaedroOrigemColuna = 7;
 
-    for (int i = 0; i < 5; i++) // Linhas
+    // Habilidade do octaedro
 
-    {
+    for (int i = 0; i < 5; i++) // Linhas
 
-        for (int j = 0; j < 5; j++) // Colunas
+    {
 
-        {
+        for (int j = 0; j < 5; j++) // Colunas
 
-            if (i >= 5 && j >= 0 - i && j <= 4)
+        {
 
-            {
+            if (i >= 4 && i <= 8 && j >= 5 - i)
+            {
 
-                cruz[i][j] = areaAfetada;
+                octaedro[i][j] = areaAfetada;
+            }
 
-            }
+            else
 
-            else
+            {
 
-            {
-
-                cruz[i][j] = agua;
-
-            }
-
-        }
-
-    }
-
-
-
-    int octaedro[5][5];
-
-    int ostaedroOrigemLinha = 6;
-
-    int octaedroOrigemColuna = 7;
-
-
-
-    // Habilidade do octaedro
-
-    for (int i = 0; i < 5; i++) // Linhas
-
-    {
-
-        for (int j = 0; j < 5; j++) // Colunas
-
-        {
-
-            if (i >= 4 && i <= 8 && j >= 5 - i)
-
-            {
-
-                octaedro[i][j] = areaAfetada;
-
-            }
-
-            else
-
-            {
-
-                octaedro[i][j] = agua;
-
-            }
-
-        }
-
-    }
+                octaedro[i][j] = agua;
+            }
+        }
+    }
 
     // int navioVertical[3] = {3, 3, 3};
     // int navioHorizontal[3] = {3, 3, 3};
